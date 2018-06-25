@@ -15,11 +15,11 @@ async function listPWA() {
     title.textContent = item.short_name || item.name;
     el.appendChild(title);
 
-    el.onclick = async () => {
+    icon.onclick = async () => {
       let start_url = new URL(item.start_url, item.___manifest_url___);
       let win = await browser.windows.create({
         url: start_url.href,
-        type: "popup"
+        type: "panel"
       });
       // await new Promise(r => setTimeout(r, 1000));
       // browser.theme.update(win.id, {
@@ -33,4 +33,32 @@ async function listPWA() {
   });
 }
 
+var search = input = document.getElementById("myInput");
+
+search.addEventListener("input", myFunction);
+
+search.onkeyup="test()"
+
+function test(){
+  console.log("TEST")
+}
+
+
 listPWA();
+
+function myFunction() {
+  var input, filter, ul, li, a, i;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  ul = document.getElementById("list");
+  li = ul.getElementsByTagName("div");
+  for (i = 0; i < li.length; i++) {
+      a = li[i].getElementsByTagName("span")[0];
+      if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
+          li[i].style.display = "";
+      } else {
+          li[i].style.display = "none";
+
+      }
+  }
+}

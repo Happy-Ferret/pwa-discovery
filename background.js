@@ -8,7 +8,7 @@ browser.runtime.onMessage.addListener(async (message, {tab}) => {
     let name = json.short_name || json.name;
     browser.pageAction.setTitle({
       tabId,
-      title: "Add " + name + " to Firefox"
+      title: "Add " + name + " to Quokka"
     });
 
     let icon = getBestIcon(32, json.icons);
@@ -30,6 +30,20 @@ browser.pageAction.onClicked.addListener(async tab => {
   manifests.push(manifest);
   browser.storage.local.set({ manifests });
 });
+
+// browser.browserAction.onClicked.addListener((tab) => {
+//   // disable the active tab
+//   browser.browserAction.disable(tab.id);
+//   // requires the "tabs" or "activeTab" permission
+//   console.log(tab.url);
+// });
+
+browser.browserAction.onClicked.addListener(async => {
+  var createData = {
+    url: "popup.html",
+  };
+  var creating = browser.tabs.update(createData);
+})
 
 browser.tabs.onUpdated.addListener(async (tabId) => {
   browser.tabs.sendMessage(tabId, {type: "request-manifest"})

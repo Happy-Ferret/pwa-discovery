@@ -1,28 +1,75 @@
+<title>Quokka App Launcher</title>
 <div id="list"></div>
+<input type="text"
+       id="myInput"
+       placeholder="Search Apps"
+       title="Type in a name"
+/>
 <script src="manifest-utils.js"></script>
 <script src="pwa-list.js"></script>
+<link rel="stylesheet" href="chrome://browser/content/newtab/newTab.css">
 <style>
   body {
     font: menu;
-
+    /* background: #424f5a; */
+    background: #24292e;
   }
+
   #list {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
     grid-gap: 40px;
     text-align: center;
+    align-content: center;
+    color: beige;
   }
 
-  #list > div {
+  #list>div {
     display: inline-block;
   }
 
-  #list > div > img {
+  #list>div>img {
     width: 64px;
     height: 64px;
   }
-  #list > div > span {
+
+  #list>div>span {
     display: block;
     text-overflow: ellipsis;
   }
+
+  #myInput {
+  background-image: url('chrome://browser/skin/search-indicator-magnifying-glass.svg');
+  background-position: 10px 12px;
+  background-repeat: no-repeat;
+  width: 100%;
+  font-size: 16px;
+  padding: 12px 20px 12px 40px;
+  border: 1px solid #ddd;
+  /* margin-bottom: 12px; */
+  position: fixed;
+  bottom: 0;
+  opacity: 0.8;
+}
 </style>
+
+<!-- 
+<script>
+  function myFunction() {
+      var input, filter, ul, li, a, i;
+      input = document.getElementById("myInput");
+      filter = input.value.toUpperCase();
+      ul = document.getElementById("list");
+      li = ul.getElementsByTagName("div");
+      for (i = 0; i < li.length; i++) {
+          a = li[i].getElementsByTagName("a")[0];
+          if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
+              li[i].style.display = "";
+          } else {
+              li[i].style.display = "none";
+  
+          }
+      }
+  }
+  </script>
+   -->
